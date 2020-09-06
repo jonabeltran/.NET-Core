@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row padding">
+        <div class="col-sm-12 col-md-4 col-lg-4">
+
+            <form [formGroup]="imageForm" (ngSubmit)="onSubmit($event)">
+
+                <div class="input-file">
+                    <input type="file" placeholder="onFile" #fileInput (change)="onFileChange($event)" formControlName="file">
+                    <img *ngIf="image" src="{{image}}" class="img-fluid img-thumbnail image">
+                </div>
+
+                <!--   <input type="text" placeholder="Name" formControlName="name" class="name-picture mt-2"> -->
+
+                <br>
+                <button type="submit" class="btn btn-outline-primary btn-lg btn-block" [disabled]="!imageForm.valid">Save Photo</button>
+            </form>
+
+            <div class="row">
+                <!-- <div class="col-4"> -->
+                <div class="col-sm-12 col-md-4 col-lg-4 p-1" *ngFor="let file of arrayFiles">
+                    <div>
+                        <img [src]="URL + file" class="img-fluid img-thumbnail">
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-12 col-md-8 col-lg-8">
+
+            <form (ngSubmit)="onSave($event)" [formGroup]="formGroup">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" placeholder="Enter title" id="title" formControlName="title">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
+                </div>
+
+                <button class="btn btn-primary" [disabled]="!formGroup.valid">Save</button>
+            </form>
+
+        </div>
+    </div>
+</div>

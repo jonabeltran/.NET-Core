@@ -1,0 +1,29 @@
+<div class="container-fluid padding">
+    <div class="row padding">
+        <div class="col-md-12 col-lg-6">
+            <ng-container *ngIf="getBandera()=='desk'; else philosophy">
+                <h2>If you built its ...</h2>
+                <p>parrafo1</p>
+                <p>parrafo2</p>
+                <p>parrfo3</p>
+                <br>
+                <a href="" class="btn btn-primary">Learn More</a>
+            </ng-container>
+            <ng-template #philosophy>
+                <h2>you are in philosophy...</h2>
+                <p>parrafo1</p>
+                <p>parrafo2</p>
+                <p>parrfo3 philo</p>
+            </ng-template>
+        </div>
+        <div class="col-lg-6">
+            <ng-container *ngIf="getBandera()=='desk'; else philosophy2">
+                <img src="../../../assets/desk.png" class="img-fluid">
+            </ng-container>
+            <ng-template #philosophy2>
+                <img src="../../../assets/bootstrap2.png" class="img-fluid">
+            </ng-template>
+        </div>
+    </div>
+    <hr class="my-4">
+</div>

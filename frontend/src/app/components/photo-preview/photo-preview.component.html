@@ -1,0 +1,38 @@
+<div class="row" *ngIf="photo.url==null; else main_content">
+    <h1>Loading ...</h1>
+</div>
+
+<ng-template #main_content>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <img [src]="URL + photo.url" class="img-fluid">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <form class="card-body">
+                    <div class="form-group">
+                        <input type="text" class="form-control" [value]="photo.title">
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="2" class="form-control" [value]="photo.description"></textarea>
+                    </div>
+                    <button class="btn btn-primary">
+                        Update
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <app-upload></app-upload>
+        </div>
+
+
+    </div>
+
+    <button class="btn btn-danger">
+        Delete and
+    </button>
+</ng-template>
