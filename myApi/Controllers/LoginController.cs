@@ -38,7 +38,7 @@ namespace myApi.Controllers
             var _userInfo = await AutenticarUsuarioAsync(usuarioLogin.Email, usuarioLogin.Password);
             if (_userInfo != null)
             {
-                return Ok(new { token = GenerarTokenJWT(_userInfo) });
+                return Ok(new { token = GenerarTokenJWT(_userInfo) , id_user = _userInfo.id });
             }
             else
             {

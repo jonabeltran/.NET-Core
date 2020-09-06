@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using myApi.Contexts;
+using myApi.Helpers;
 using myApi.Models;
 
 namespace myApi.Controllers
@@ -24,9 +25,18 @@ namespace myApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Galery> Get()
+        public async Task<ActionResult<List<Galery>>> get([FromQuery] int id_user, [FromQuery] int pagina, [FromQuery] int cantidadMostrar)
         {
-            return context.galery.ToList();
+            var queryable = context.galery.Where(p => p.id_user == id_user).AsQueryable();
+            await HttpContext.InsertarParametrosPaginacionEnRespuesta(queryable, cantidadMostrar);
+
+            return await queryable.Paginar(pagina, cantidadMostrar).ToListAsync();
+
+      
+
+            //return context.galery.Where(p => p.id_user == id_user).ToList();
+
+            // public async IEnumerable<Galery> get([FromQuery] int id_user, [FromQuery] Paginacion paginacion)
         }
 
         [HttpGet("{id}")]

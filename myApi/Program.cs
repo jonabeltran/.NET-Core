@@ -21,6 +21,7 @@ namespace myApi
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                  //  webBuilder.UseWebRoot(@".\WebSite\wwwroot\");
                 });
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -68,6 +69,10 @@ namespace myApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
 
             app.UseHttpsRedirection();
 
@@ -76,6 +81,8 @@ namespace myApi
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseStaticFiles();
 
             app.UseCors(option =>
             {
@@ -89,7 +96,10 @@ namespace myApi
                 endpoints.MapControllers();
             });
 
-            
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Could Not Find Anything");
+            });
 
         }
     }
